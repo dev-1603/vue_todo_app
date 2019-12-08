@@ -3,6 +3,7 @@
   <q-page class="bg-grey-3 column">
     <div class="row q-pa-md ">
       <div class="col-9">
+        <!-- input field for addding todo task ... it can be added by just hitting enter key -->
       <q-input  
       v-model="newtask" 
       @keyup.enter="addtask"
@@ -10,14 +11,10 @@
       placeholder="Add Todo"  
       dense 
       bg-color ="white">
-     
-      <template v-slot:append>
-      
-      </template>
+    
       </q-input>
-     
-      
 
+     <!-- add button to add todo task   -->
       </div>
       <q-btn class="float-right" color="teal" label="Add" width=50px
             @click="addtask"/>
@@ -26,37 +23,36 @@
         separator
         bordered>
       
-
+      <!-- this section will check for each task enter ... on click on that task row  the task will be marked as complete n will be deleted  -->
       <q-item 
         v-for="(task, index) in tasks"
         :key="task.title"
         @click="deletetask(index)"
-        :class="{'done': task.done}"
+        :class="{'completed': task.completed}"
         clickable
         v-ripple>
+
+        <!-- list item section for checkbox  ..... @click native will trigeer deletetask method on clicking on checkbox-->
         <q-item-section avatar>
           <q-checkbox 
-          v-model="task.done"
-          @click.native="deletetask(index)"
+          v-model="task.completed"
+          @click.native="deletetask(index)"   
           class="no-pointer-event"
           color="primary" />
         </q-item-section>
+
+        <!-- list item  section to display the entered Todo -->
         <q-item-section>
           <q-item-label>{{task.title}}</q-item-label>
         </q-item-section>
+        <!-- list item section  to check if task is completed -->
         <q-item-section
-        v-if="task.done">
-        
+        v-if="task.completed">
         </q-item-section>
       </q-item>
       
     </q-list>
-     <!-- <div class="footer-copyright text-center py-3">
-      <mdb-container fluid>
-        &copy; 2018 Copyright: <a href="https://www.MDBootstrap.com"> MDBootstrap.com </a>
-      </mdb-container>
-    </div> -->
-    
+     
   </q-page>
 
 </div>
@@ -66,24 +62,26 @@
 export default {
   data() {
       return {
+        // it will  return the  added tasks ... it has 3 pre initialied task for test purpose
         newtask:'',
           tasks: [
           {
             title:'Breakfast',
-            done: false
+            completed: false
           },
           {
             title:'lunch',
-            done: false
+            completed: false
           },
           {
             title:'Dinner',
-            done: false
+            completed: false
           },
         ]
          
       }
     },
+    // delete  method for deleting the task on click  and add task  method to add todo on hitting enter or on clicking add button
     methods: {
       deletetask(index) {
       this.$q.dialog({
@@ -99,7 +97,7 @@ export default {
       addtask() {
         this.tasks.push({
           title:this.newtask ,
-          done:false
+          completed:false
         })
         this.newtask=''
         
