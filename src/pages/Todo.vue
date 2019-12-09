@@ -46,7 +46,10 @@
           <q-item-label>{{task.title}}</q-item-label>
         </q-item-section>
         <!-- list item section  to check if task is completed -->
-        
+        <q-item-section
+        v-if="task.completed">
+        </q-item-section>
+      </q-item>
       </q-item>
       
     </q-list>
