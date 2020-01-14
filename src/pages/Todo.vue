@@ -50,6 +50,7 @@
         v-if="task.completed">
         </q-item-section>
       </q-item>
+      </q-item>
       
     </q-list>
      
