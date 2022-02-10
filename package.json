@@ -25,7 +25,7 @@
     "@quasar/app": "^1.0.0",
     "less": "^3.10.3",
     "less-loader": "^5.0.0",
-    "node-sass": "^4.13.0",
+    "node-sass": "^7.0.0",
     "sass-loader": "^8.0.0",
     "webpack": "^4.41.2",
     "xspreadsheet": "^1.0.4"
